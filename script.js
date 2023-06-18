@@ -144,5 +144,99 @@ const game = (() => {
         } else return 0;
     }
 
-    
-})
+    const _checkForTie = () => {
+        tilesCheck = Array.from(_tiles).filter(tile => tile.textContent === '');
+        if(tilesCheck.length === 0) {
+            return 3;
+        }
+        return false;
+    }
+
+    const _changeGameMode = (button) => {
+        if(button.classList.contains('active')) {
+            return 0;
+        } else {
+            _pvpBtn.classList.toggle('active');
+            _pveBtn.classList.toggle('active');
+            game.startGame();
+        }
+    }
+
+    return {startGame, playRound, checkForWinner};
+})();
+
+const playerAI = (() => {
+    const playRoundAI = () => {
+        let board = gameBoard.getBoard();
+        let bestMove = _minimax(board, playerTwo);
+        const symbol = playerOne.turnOrder() ? 1 : 2;
+        if(playerTwo.turnOrder()) {
+            game.playRound(bestMove.x, bestMove.y, symbol)
+        }
+    }
+
+    const _isMoveLeft = (board) => {
+        for(let i = 0; i < board.length; i++) {
+            for(let j = 0; j < board[i].length; j++) {
+                if(board[i][j] === null) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    const _minimax = (board, player) => {
+        const gameWinner = game.checkForWinner(board);
+
+        if(gameWinner === 2)
+        return {score: 10};
+        
+        if(gameWinner === 1)
+        return {score: -10};
+
+        if(_isMoveLeft(board) === false)
+        return {score: 0};
+
+        let moves = [];
+
+        for(let i = 0; i < 3; i++) {
+            for(let j = 0; j < 3; j++) {
+                if(board[i][j] === null) {
+                    let move = {};
+                    move.x = j;
+                    move.y = i;
+                    board[i][j] = player.mark === 'O' ? 1 : 2;
+
+                    if(player.mark === 'X') {
+                        let result = _minimax(board, playerOne);
+                        move.score = result.score;
+                    } else {
+                        let result = _minimax(board, playerTwo);
+                        move.score = result.score;
+                    }
+                    
+                    board[i][j] = null;
+                    moves.push(move);
+                }
+            }
+        }
+        return _findBestMove(moves, player)
+    }
+
+    const _findBestMove = (moves, player) => {
+        let bestMove;
+
+        if(player.mark === 'X') {
+            let bestScore = -1000;
+            for(let i = 0; i < moves.length; i++) {
+                if(moves[i].score < bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = i;
+                }
+            }
+        }
+        return moves[bestMove];
+    }
+    return {playRoundAI};
+})();
