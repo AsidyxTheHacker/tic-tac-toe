@@ -85,6 +85,11 @@ main {
     border-bottom: rgba(8, 18, 151, 0.742) solid 2px;
 }
 
+.active, .player-active {
+    padding-top: .5em;
+    transform: scale(1.2);
+}
+
 @media(max-width: 600px) {
     h1 {
         font-size: 2em;
