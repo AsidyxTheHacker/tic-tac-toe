@@ -106,5 +106,43 @@ const game = (() => {
         _gameStopped = true;
     }
 
+    const _tileOnClick = (e) => {
+        const xIndex = e.target.dataset.index;
+        const yIndex = e.target.parentElement.dataset.index;
+        const symbol = playerOne.turnOrder() ? 1 : 2;
+        playRound(xIndex, yIndex, symbol);
+        if(!_gameStopped && !_PVP) playerAI.playRoundAI();
+    }
+
+    const _checkVertically = (board) => {
+        for(let i = 0; i < 3; i++) {
+            if(board[0][i] === board[1][i] && board[1][i] === board[2][i] && board[0][i] !== null) {
+                const winner = board[0][i];
+                return winner;
+            }
+        }
+        return 0;
+    }
+
+    const _checkHorizontally = (board) => {
+        for(let i = 0; i < 3; i++) {
+            if(board[i][0] === board[i][1] && board[i][1] === board[i][2] && board[i][0] !== null) {
+                const winner = board[i][0];
+                return winner;
+            }
+        }
+        return 0;
+    }
+
+    const _checkDiagonally = (board) => {
+        if(board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== null) {
+            const winner = board[0][0];
+            return winner;
+        } else if(board[2][0] === board[1][1] && board[1][1] === board[0][2] && board[2][0] !== null) {
+            const winner = board[2][0];
+            return winner;
+        } else return 0;
+    }
+
     
 })
