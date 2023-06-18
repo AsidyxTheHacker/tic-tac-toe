@@ -3,6 +3,7 @@ body {
     background-image: linear-gradient(rgb(86, 188, 219), rgba(8, 18, 151, 0.595));
     background-repeat: no-repeat;
     height: 100vh;
+    box-sizing: border-box;
 }
 
 header {
