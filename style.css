@@ -20,7 +20,7 @@ h1 {
     margin: 0;
     cursor: default;
     padding: .2em;
-    text-shadow: rgba(8, 18, 151, 0.595) 5px 5px 0;
+    text-shadow: rgba(8, 18, 151, 0.742) 5px 5px 0;
 }
 
 .player-container {
@@ -30,13 +30,13 @@ h1 {
     flex-direction: column;
     padding: 1em;
     border-radius: 12px;
-    border-bottom: rgba(8, 18, 151, 0.595) 3px solid;
+    border-bottom: rgba(8, 18, 151, 0.742) 3px solid;
 }
 
 .player-container p {
     font-size: 2.3em;
     margin: 0 0 .3em 0;
-    text-shadow: rgba(8, 18, 151, 0.595) 4px 4px 0;
+    text-shadow: rgba(8, 18, 151, 0.742) 4px 4px 0;
 }
 
 .player-container img, .player-two-icons img {
@@ -50,23 +50,64 @@ h1 {
     gap: 1em;
 }
 
+main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.gameboard {
+    border: rgba(8, 18, 151, 0.742) solid 2px;
+    box-shadow: rgba(4, 9, 75, 0.845) 6px 6px 0;
+}
+
+.row {
+    display: flex;
+}
+
+.tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    cursor: pointer;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.tile[data-index="0"], .tile[data-index="1"] {
+    border-right: rgba(8, 18, 151, 0.742) solid 2px;
+}
+
+.row[data-index="0"], .row[data-index="1"] {
+    border-bottom: rgba(8, 18, 151, 0.742) solid 2px;
+}
+
 @media(max-width: 600px) {
     h1 {
-        font-size: 1.1em;
+        font-size: 2em;
         text-shadow: rgba(8, 18, 151, 0.595) 2px 2px 0;
+        width: 2.8em;
     }
     .player-container {
         margin-top: .3em;
-        padding: .3em;
+        padding: .5em;
     }
     .player-container p {
-        font-size: .9em;
+        font-size: 1em;
         margin: 0;
         text-shadow: rgba(8, 18, 151, 0.595) 2px 2px 0;
     }
     .player-container img, .player-two-icons img {
         height: 1.7em;
         padding: 0;
+    }
+    .tile {
+        width: 100px;
+        height: 100px;
+        font-size: 1em;
     }
 }
 
