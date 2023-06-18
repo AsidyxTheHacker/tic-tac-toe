@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="icon" href="imgs/favicon.png">
     <title>Tic-Tac-Toe</title>
 </head>
@@ -12,13 +12,13 @@
     <header>
         <div class="player-container">
             <p>Player 1</p>
-            <img src="imgs/player.svg">
+            <img class="player-active" src="imgs/player.svg">
         </div>
         <h1 class="title">Tic-Tac-Toe</h1>
         <div class="player-container">
             <p>Player 2</p>
             <div class="player-two-icons">
-            <img id="pve" src="imgs/robot.svg">
+            <img id="pve" class="active" src="imgs/robot.svg">
             <img id="pvp" src="imgs/player.svg">
           </div>
         </div>
