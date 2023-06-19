@@ -284,4 +284,7 @@ const displayController = (() => {
     return {renderBoard, changeText}
 })();
 
+const restartBtn = document.getElementById('restart');
+restartBtn.addEventListener('click', game.startGame);
+
 game.startGame();
