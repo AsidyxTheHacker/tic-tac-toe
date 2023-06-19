@@ -29,6 +29,7 @@ h1 {
     align-items: center;
     flex-direction: column;
     padding: 1em;
+    height: 7em;
     border-radius: 12px;
     border-bottom: rgba(8, 18, 151, 0.742) 3px solid;
 }
@@ -40,6 +41,7 @@ h1 {
 }
 
 .player-container img, .player-two-icons img {
+    transition: .2s ease-in-out;
     height: 3.2em;
     cursor: pointer;
     padding-bottom: .5em;
@@ -99,6 +101,7 @@ main {
     .player-container {
         margin-top: .3em;
         padding: .5em;
+        height: 4em;
     }
     .player-container p {
         font-size: 1em;
