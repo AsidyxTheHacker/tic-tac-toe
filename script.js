@@ -230,6 +230,14 @@ const playerAI = (() => {
         if(player.mark === 'X') {
             let bestScore = -1000;
             for(let i = 0; i < moves.length; i++) {
+                if(moves[i].score > bestScore) {
+                    bestScore = moves[i].score;
+                    bestMove = i;
+                }
+            }
+        } else {
+            let bestScore = 1000;
+            for(let i = 0; i < moves.length; i++) {
                 if(moves[i].score < bestScore) {
                     bestScore = moves[i].score;
                     bestMove = i;
@@ -240,3 +248,40 @@ const playerAI = (() => {
     }
     return {playRoundAI};
 })();
+
+const displayController = (() => {
+    renderBoard =() => {
+        const boardDOM = gameBoard.getBoardDOM();
+        for(i = 0; i < boardDOM.length; i++) {
+            const row = boardDOM[i];
+            for(j = 0; j < row.length; j++) {
+                const tile = boardDOM[i][j];
+                _renderTile(tile, i ,j);
+            }
+        }
+    }
+
+    const changeText = (element,  text) => {
+        element.textContent = text
+    }
+
+    const _renderTile = (tile, i ,j) => {
+        let board = gameBoard.getBoard();
+        switch (board[i][j]) {
+            case null:
+                tile.textContent = '';
+                break;
+            case 1:
+                tile.textContent = playerOne.mark;
+                break;
+            case 2:
+                tile.textContent = playerTwo.mark;
+                break;
+            default:
+                break;
+        }
+    }
+    return {renderBoard, changeText}
+})();
+
+game.startGame();
