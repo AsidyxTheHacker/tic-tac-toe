@@ -88,8 +88,21 @@ main {
 }
 
 .active, .player-active {
-    padding-top: .5em;
     transform: scale(1.2);
+}
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.winner-text {
+    color: white;
+    font-family: super-comic, Arial, Helvetica, sans-serif;
+    font-size: 2em;
 }
 
 @media(max-width: 600px) {
